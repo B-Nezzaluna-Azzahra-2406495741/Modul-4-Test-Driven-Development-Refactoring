@@ -64,4 +64,19 @@ class OrderTest {
         Order order = new Order("1365255a-1ef7-47d0-8133-14b3d9b3571d", this.products, 1708560000L, "Bambang Sugeni");
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("INVALID_STATUS"));
     }
+
+    @Test
+    void testCreateOrderWithEmptyProductList() {
+        List<Product> emptyProducts = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Order("1365255a-1ef7-47d0-8133-14b3d9b3571d", emptyProducts, 1708560000L, "Bambang Sugeni");
+        });
+    }
+
+    @Test
+    void testCreateOrderWithNullProductList() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Order("1365255a-1ef7-47d0-8133-14b3d9b3571d", null, 1708560000L, "Bambang Sugeni");
+        });
+    }
 }
